@@ -22,7 +22,7 @@ const utils = {
         };
 
         ctx.beginPath();
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 5;
         ctx.moveTo(x + radius.tl, y);
         ctx.lineTo(x + width - radius.tr, y);
         ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
@@ -48,7 +48,7 @@ const utils = {
 
         ctx.beginPath();
         ctx.strokeStyle = '#5b5b5b';
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 10;
 
         ctx.moveTo(x + 1/4 * width - 1, y);
         ctx.lineTo(x + width, y);
@@ -66,7 +66,7 @@ const utils = {
         ctx.closePath();
         reset2default(ctx);
     },
-    paintRect: (ctx, x, y, width, height, borderRadius = 0, color = config.contentColor, shadowColor = config.shadowColor, offsetX = 0, offsetY = 0, blur = 0) => {
+    paintRect: (ctx, x, y, width, height, borderRadius = 0, color = config.config.contentColor, shadowColor = config.config.shadowColor, offsetX = 0, offsetY = 0, blur = 0) => {
         borderRadius = borderRadius >= 0 ? +borderRadius : 0;
         const radius = {
             tl: borderRadius,
@@ -99,13 +99,14 @@ const utils = {
         ctx.closePath();
         reset2default(ctx);
     },
-    drawText: (ctx, text, x, y, color = config.fontColor, align = 'center') => {
+    drawText: (ctx, text, x, y, color = config.config.fontColor, align = 'center') => {
         const alignExample = ['left', 'right', 'center', 'start', 'end'];
 
         align = (alignExample.indexOf(align) !== -1) ? align : 'left';
 
         ctx.beginPath();
         ctx.fillStyle = color;
+        ctx.fontSize = '300px'
         ctx.textAlign = align;
         ctx.fillText(text, x, y);
         ctx.closePath();
@@ -113,4 +114,5 @@ const utils = {
         reset2default(ctx);
     },
 };
-export default { utils }
+
+export default utils;
