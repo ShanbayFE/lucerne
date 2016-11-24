@@ -41,7 +41,7 @@ const utils = {
             ctx.stroke();
         }
         ctx.closePath();
-        resetConfig(ctx);
+        reset2default(ctx);
     },
     drawDelBtn: (ctx, x, y, width, height, borderRadius = 0) => {
         borderRadius = borderRadius >= 0 ? +borderRadius : 0;
@@ -64,7 +64,7 @@ const utils = {
         ctx.stroke();
 
         ctx.closePath();
-        resetConfig(ctx);
+        reset2default(ctx);
     },
     paintRect: (ctx, x, y, width, height, borderRadius = 0, color = config.contentColor, shadowColor = config.shadowColor, offsetX = 0, offsetY = 0, blur = 0) => {
         borderRadius = borderRadius >= 0 ? +borderRadius : 0;
@@ -99,7 +99,7 @@ const utils = {
         ctx.closePath();
         reset2default(ctx);
     },
-    drawText: function (ctx, text, x, y, color = config.fontColor, align = 'center') {
+    drawText: (ctx, text, x, y, color = config.fontColor, align = 'center') => {
         const alignExample = ['left', 'right', 'center', 'start', 'end'];
 
         align = (alignExample.indexOf(align) !== -1) ? align : 'left';
@@ -111,6 +111,6 @@ const utils = {
         ctx.closePath();
 
         reset2default(ctx);
-    }
-}
+    },
+};
 export default { utils }
