@@ -2,7 +2,7 @@ import config from './config';
 
 const reset2default = (ctx) => {
     ctx.lineWidth = 1;
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = '#000'
     ctx.strokeStyle = '#000';
     ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0;
@@ -74,9 +74,9 @@ const utils = {
             bl: borderRadius,
             br: borderRadius
         };
-        const offsetX = typeof offsetX === 'number' ? offsetX : 0;
-        const offsetY = typeof offsetY === 'number' ? offsetY : 0;
-        const blur = typeof blur === 'number' ? blur : 0;
+        offsetX = typeof offsetX === 'number' ? offsetX : 0;
+        offsetY = typeof offsetY === 'number' ? offsetY : 0;
+        blur = typeof blur === 'number' ? blur : 0;
 
         ctx.beginPath();
         ctx.moveTo(x + radius.tl, y);
@@ -102,7 +102,7 @@ const utils = {
     drawText: function (ctx, text, x, y, color = config.fontColor, align = 'center') {
         const alignExample = ['left', 'right', 'center', 'start', 'end'];
 
-        const align = (alignExample.indexOf(align) !== -1) ? align : 'left';
+        align = (alignExample.indexOf(align) !== -1) ? align : 'left';
 
         ctx.beginPath();
         ctx.fillStyle = color;
