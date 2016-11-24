@@ -5,6 +5,7 @@ function Keyboard(className) {
     c.className = className || '';
 
     var canvas = c.getContext('2d');
+
     var isShowing = true;
     var offsetTop;
     var offsetLeft;
@@ -14,110 +15,97 @@ function Keyboard(className) {
     var contentColor = '#ffffff';
     var fontColor = '#333333';
 
-    var drawBorder = function (ctx, x, y, width, height, type, borderRadius, color) {
-        var type = type || 'fill';
-        var color = color || '#dddddd';
-        var borderRadius = typeof borderRadius === 'number' ? parseInt(borderRadius) : 0;
-        var radius = {
-            tl: borderRadius,
-            tr: borderRadius,
-            bl: borderRadius,
-            br: borderRadius
-        };
-        ctx.beginPath();
-        ctx.lineWidth = 3;
-        ctx.moveTo(x + radius.tl, y);
-        ctx.lineTo(x + width - radius.tr, y);
-        ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
-        ctx.lineTo(x + width, y + height - radius.br);
-        ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
-        ctx.lineTo(x + radius.bl, y + height);
-        ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
-        ctx.lineTo(x, y + radius.tl);
-        ctx.quadraticCurveTo(x, y, x + radius.tl, y);
-        ctx.fillStyle = color;
-        ctx.strokeStyle = color;
-        if (type === 'fill') ctx.fill();
-        else if (type === 'stroke') ctx.stroke();
-        ctx.closePath();
-    }
-    var drawDelBtn = function (ctx, x, y, width, height, borderRadius) {
-        var borderRadius = typeof borderRadius === 'number' ? parseInt(borderRadius) : 0;
-        ctx.beginPath();
-        ctx.strokeStyle = '#5b5b5b';
-        ctx.lineWidth = 5;
-        ctx.moveTo(x + 1/4 * width - 1, y);
-        ctx.lineTo(x + width, y);
-        ctx.lineTo(x + width, y - 1/2 * height);
-        ctx.lineTo(x + 1/4 * width, y - 1/2 * height);
-        ctx.lineTo(x, y - 1/4 * height);
-        ctx.lineTo(x + 1/4 * width, y);
-
-        ctx.moveTo(x + 1/2 * width, y - 1/8 * width);
-        ctx.lineTo(x + 3/4 * width, y - 3/8 * height);
-        ctx.moveTo(x + 1/2 * width, y - 3/8 * height);
-        ctx.lineTo(x + 3/4 * width, y - 1/8 * width);
-        ctx.stroke();
-        ctx.closePath();
-    }
-    var paintRect = function (ctx, x, y, width, height, color, shadowColor, offsetX, offsetY , blur) {
-        // var color = color || '#000000';
-        // var shadowColor = shadowColor || '#000000';
-        // var offsetX = typeof offsetX === 'number' ? offsetX : 0;
-        // var offsetY = typeof offsetY === 'number' ? offsetY : 0;
-        // var blur = typeof blur === 'number' ? blur : 0;
-        // ctx.beginPath();
-        // ctx.rect(parseInt(x + 4), parseInt(y + 4), parseInt(width - 8), parseInt(height - 7));
-        // ctx.shadowColor = shadowColor;
-        // ctx.shadowBlur = blur;
-        // ctx.shadowOffsetX = offsetX;
-        // ctx.shadowOffsetY = offsetY;
-        // ctx.fill();
-        // ctx.closePath();
-        var borderRadius = typeof borderRadius === 'number' ? parseInt(borderRadius) : 10;
-        var radius = {
-            tl: borderRadius,
-            tr: borderRadius,
-            bl: borderRadius,
-            br: borderRadius
-        };
-        var color = color || '#000000';
-        var shadowColor = shadowColor || '#000000';
-        var offsetX = typeof offsetX === 'number' ? offsetX : 0;
-        var offsetY = typeof offsetY === 'number' ? offsetY : 0;
-        var blur = typeof blur === 'number' ? blur : 0;
-        ctx.beginPath();
-        ctx.moveTo(x + radius.tl, y);
-        ctx.lineTo(x + width - radius.tr, y);
-        ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
-        ctx.lineTo(x + width, y + height - radius.br);
-        ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
-        ctx.lineTo(x + radius.bl, y + height);
-        ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
-        ctx.lineTo(x, y + radius.tl);
-        ctx.quadraticCurveTo(x, y, x + radius.tl, y);
-        ctx.shadowColor = shadowColor;
-        ctx.shadowBlur = blur;
-        ctx.shadowOffsetX = offsetX;
-        ctx.shadowOffsetY = offsetY;
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.closePath();
-        ctx.shadowBlur = 0;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-    }
-
-    var drawText = function (ctx, text, x, y, color, align) {
-        var color = color || '#000000';
-        var alignExample = ['left', 'right', 'center', 'start', 'end'];
-        var align = (alignExample.indexOf(align) !== -1) ? align : 'center';
-        ctx.beginPath();
-        ctx.fillStyle = color;
-        ctx.textAlign = align;
-        ctx.fillText(text, x, y);
-        ctx.closePath();
-    }
+    // var drawBorder = function (ctx, x, y, width, height, type, borderRadius, color) {
+    //     var type = type || 'fill';
+    //     var color = color || '#dddddd';
+    //     var borderRadius = typeof borderRadius === 'number' ? parseInt(borderRadius) : 0;
+    //     var radius = {
+    //         tl: borderRadius,
+    //         tr: borderRadius,
+    //         bl: borderRadius,
+    //         br: borderRadius
+    //     };
+    //     ctx.beginPath();
+    //     ctx.lineWidth = 3;
+    //     ctx.moveTo(x + radius.tl, y);
+    //     ctx.lineTo(x + width - radius.tr, y);
+    //     ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+    //     ctx.lineTo(x + width, y + height - radius.br);
+    //     ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+    //     ctx.lineTo(x + radius.bl, y + height);
+    //     ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+    //     ctx.lineTo(x, y + radius.tl);
+    //     ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+    //     ctx.fillStyle = color;
+    //     ctx.strokeStyle = color;
+    //     if (type === 'fill') ctx.fill();
+    //     else if (type === 'stroke') ctx.stroke();
+    //     ctx.closePath();
+    // }
+    // var drawDelBtn = function (ctx, x, y, width, height, borderRadius) {
+    //     var borderRadius = typeof borderRadius === 'number' ? parseInt(borderRadius) : 0;
+    //     ctx.beginPath();
+    //     ctx.strokeStyle = '#5b5b5b';
+    //     ctx.lineWidth = 5;
+    //     ctx.moveTo(x + 1/4 * width - 1, y);
+    //     ctx.lineTo(x + width, y);
+    //     ctx.lineTo(x + width, y - 1/2 * height);
+    //     ctx.lineTo(x + 1/4 * width, y - 1/2 * height);
+    //     ctx.lineTo(x, y - 1/4 * height);
+    //     ctx.lineTo(x + 1/4 * width, y);
+    //
+    //     ctx.moveTo(x + 1/2 * width, y - 1/8 * width);
+    //     ctx.lineTo(x + 3/4 * width, y - 3/8 * height);
+    //     ctx.moveTo(x + 1/2 * width, y - 3/8 * height);
+    //     ctx.lineTo(x + 3/4 * width, y - 1/8 * width);
+    //     ctx.stroke();
+    //     ctx.closePath();
+    // }
+    // var paintRect = function (ctx, x, y, width, height, color, shadowColor, offsetX, offsetY , blur) {
+    //     var borderRadius = typeof borderRadius === 'number' ? parseInt(borderRadius) : 10;
+    //     var radius = {
+    //         tl: borderRadius,
+    //         tr: borderRadius,
+    //         bl: borderRadius,
+    //         br: borderRadius
+    //     };
+    //     var color = color || '#000000';
+    //     var shadowColor = shadowColor || '#000000';
+    //     var offsetX = typeof offsetX === 'number' ? offsetX : 0;
+    //     var offsetY = typeof offsetY === 'number' ? offsetY : 0;
+    //     var blur = typeof blur === 'number' ? blur : 0;
+    //     ctx.beginPath();
+    //     ctx.moveTo(x + radius.tl, y);
+    //     ctx.lineTo(x + width - radius.tr, y);
+    //     ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+    //     ctx.lineTo(x + width, y + height - radius.br);
+    //     ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+    //     ctx.lineTo(x + radius.bl, y + height);
+    //     ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+    //     ctx.lineTo(x, y + radius.tl);
+    //     ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+    //     ctx.shadowColor = shadowColor;
+    //     ctx.shadowBlur = blur;
+    //     ctx.shadowOffsetX = offsetX;
+    //     ctx.shadowOffsetY = offsetY;
+    //     ctx.fillStyle = color;
+    //     ctx.fill();
+    //     ctx.closePath();
+    //     ctx.shadowBlur = 0;
+    //     ctx.shadowOffsetX = 0;
+    //     ctx.shadowOffsetY = 0;
+    // }
+    //
+    // var drawText = function (ctx, text, x, y, color, align) {
+    //     var color = color || '#000000';
+    //     var alignExample = ['left', 'right', 'center', 'start', 'end'];
+    //     var align = (alignExample.indexOf(align) !== -1) ? align : 'center';
+    //     ctx.beginPath();
+    //     ctx.fillStyle = color;
+    //     ctx.textAlign = align;
+    //     ctx.fillText(text, x, y);
+    //     ctx.closePath();
+    // }
     var keyHeight,
         keyWidth,
         marginX,

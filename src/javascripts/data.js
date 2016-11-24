@@ -1,5 +1,5 @@
 const keyboardJson = {
-    'firstLine' = {
+    'firstLine': {
         'q': { 'x': 1, 'y': 1 },
         'w': { 'x': 2, 'y': 1 },
         'e': { 'x': 3, 'y': 1 },
@@ -11,7 +11,7 @@ const keyboardJson = {
         'o': { 'x': 9, 'y': 1 },
         'p': { 'x': 10, 'y': 1 },
     },
-    'secondLine' = {
+    'secondLine': {
         'a': { 'x': 1, 'y': 2 },
         's': { 'x': 2, 'y': 2 },
         'd': { 'x': 3, 'y': 2 },
@@ -22,7 +22,7 @@ const keyboardJson = {
         'k': { 'x': 8, 'y': 2 },
         'l': { 'x': 9, 'y': 2 }
     },
-    'thirdLine' = {
+    'thirdLine': {
         'z': { 'x': 1, 'y': 3 },
         'x': { 'x': 2, 'y': 3 },
         'c': { 'x': 3, 'y': 3 },
